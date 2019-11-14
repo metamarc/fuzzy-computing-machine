@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserLandingPageComponent } from './user-landing-page/user-landing-page.component';
-import { LayoutModule } from '~layout/layout.module';
 import { SafeModule } from '~safe/safe.module';
+import { LayoutingModule } from '~layout/layouting.module';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { SafeModule } from '~safe/safe.module';
   imports: [
     CommonModule,
     UserRoutingModule,
-    LayoutModule,
+    LayoutingModule,
     SafeModule
   ]
 })

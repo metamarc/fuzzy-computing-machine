@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-safe": {
+    "cool-safe": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-safe",
+            "outputPath": "dist/cool-safe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-safe:build"
+            "browserTarget": "cool-safe:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-safe:build:production"
+              "browserTarget": "cool-safe:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-safe:build"
+            "browserTarget": "cool-safe:build"
           }
         },
         "test": {
@@ -121,16 +121,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-safe:serve"
+            "devServerTarget": "cool-safe:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-safe:serve:production"
+              "devServerTarget": "cool-safe:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-safe"
+  "defaultProject": "cool-safe"
 }

@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeLandingPageComponent } from './home-landing-page/home-landing-page.component';
-import { LayoutModule } from '~layout/layout.module';
+import { NgModule } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { LayoutingModule } from '~layout/layouting.module';
 import { SafeModule } from '~safe/safe.module';
+
+import { HomeLandingPageComponent } from './home-landing-page/home-landing-page.component';
+import { HomeRoutingModule } from './home-routing.module';
 
 
 @NgModule({
@@ -12,8 +13,9 @@ import { SafeModule } from '~safe/safe.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    LayoutModule,
-    SafeModule
+    LayoutingModule,
+    SafeModule,
+    MatListModule
   ]
 })
 export class HomeModule { }

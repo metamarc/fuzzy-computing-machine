@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,10 +16,11 @@ const routes: Routes = [
     loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: '**',
+    path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  }
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

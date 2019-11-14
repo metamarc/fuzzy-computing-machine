@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { LayoutModule } from '~layout/layout.module';
 import { SafeModule } from '~safe/safe.module';
 import { AdminLandingPageComponent } from './admin-landing-page/admin-landing-page.component';
+import { LayoutingModule } from '~layout/layouting.module';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { AdminLandingPageComponent } from './admin-landing-page/admin-landing-pa
   imports: [
     CommonModule,
     AdminRoutingModule,
-    LayoutModule,
+    LayoutingModule,
     SafeModule
   ]
 })
