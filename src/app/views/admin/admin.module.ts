@@ -5,15 +5,23 @@ import { MatListModule } from '@angular/material/list';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-landing-page.component';
 import { LayoutingModule } from '~layout/layout.module';
+import { SafeListComponent } from './container/safe-list/safe-list.component';
+import { SafeListElementComponent } from './container/safe-list-element/safe-list-element.component';
+import { SafeRowComponent } from './components/safe-row/safe-row.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
-  declarations: [AdminLandingPageComponent],
+  declarations: [AdminLandingPageComponent, SafeListComponent, SafeListElementComponent, SafeRowComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     LayoutingModule,
-    MatListModule
-  ]
+    MatListModule,
+    MatIconModule,
+    MatTooltipModule
+  ],
+  exports: [SafeListElementComponent, SafeRowComponent]
 })
 export class AdminModule { }
