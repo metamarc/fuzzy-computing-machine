@@ -1,0 +1,48 @@
+<form #safeItemForm="ngForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <input
+      type="text"
+      [(ngModel)]="model.name"
+      name="name"
+      matInput
+      required
+      #name="ngModel"
+      placeholder="Name"
+      >
+    <mat-error
+      *ngIf="(name.invalid || !name.pristine) && name.getError('required')"
+      >Name is required</mat-error
+    >
+  </mat-form-field>
+  <br>
+
+  <mat-form-field>
+    <input
+      type="text"
+      [(ngModel)]="model.price"
+      name="price"
+      matInput
+      required
+      #price="ngModel"
+      placeholder="Price"
+      pattern="[0-9]*"
+      >
+    <span matPrefix>€&nbsp;</span>
+    <span matSuffix>.00</span>
+    <mat-error
+      *ngIf="(price.invalid || !price.pristine) && price.getError('required')"
+      >Price is required</mat-error
+    >
+  </mat-form-field>
+
+  <br>
+  <button
+    [disabled]="!safeItemForm.form.valid"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >
+    Add item
+  </button>
+</form>

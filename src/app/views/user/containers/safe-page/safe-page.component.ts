@@ -1,9 +1,11 @@
+import { AddSafeItemDialogComponent } from './../add-safe-item-dialog/add-safe-item-dialog.component';
 import { SafeItem } from './../../../../core/model/safe-item';
 import { map, flatMap } from 'rxjs/operators';
 import { SafeService } from './../../../../core/services/safe.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -17,7 +19,8 @@ export class SafePageComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private safeService: SafeService
+    private safeService: SafeService,
+    private dialogService: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -25,5 +28,9 @@ export class SafePageComponent implements OnInit {
       map(params => params.get('id')),
       flatMap((id: string) => this.safeService.getItems(id))
     );
+  }
+
+  addSafeItem(): void {
+    this.dialogService.open(AddSafeItemDialogComponent);
   }
 }

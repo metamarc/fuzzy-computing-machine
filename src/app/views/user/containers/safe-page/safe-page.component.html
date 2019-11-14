@@ -6,5 +6,11 @@
   </ng-container>
   <div body>
     <cool-item-list [safeItems]="safeItems$ | async"></cool-item-list>
+
+    <mat-toolbar>
+      <button mat-mini-fab color="primary" (click)="addSafeItem()">
+        <mat-icon aria-label="add new Safe Items">add</mat-icon>
+      </button>
+    </mat-toolbar>
   </div>
 </cool-header-with-sidenav>
