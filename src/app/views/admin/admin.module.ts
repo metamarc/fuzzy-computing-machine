@@ -10,6 +10,7 @@ import { SafeListElementComponent } from './container/safe-list-element/safe-lis
 import { SafeRowComponent } from './components/safe-row/safe-row.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SafeModule } from '~safe/safe.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LayoutingModule,
     MatListModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    SafeModule
   ],
   exports: [SafeListElementComponent, SafeRowComponent]
 })

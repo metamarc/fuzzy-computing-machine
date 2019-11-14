@@ -1,3 +1,4 @@
+import { Observable, of } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
@@ -7,10 +8,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserLandingPageComponent implements OnInit {
+  safeId$: Observable<string>;
 
   constructor() { }
 
   ngOnInit() {
+    this.safeId$ = of('1');
   }
-
 }
