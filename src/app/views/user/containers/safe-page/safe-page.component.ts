@@ -1,6 +1,7 @@
 import { AddSafeItemDialogComponent } from './../add-safe-item-dialog/add-safe-item-dialog.component';
 import { SafeItem } from './../../../../core/model/safe-item';
-import { map, flatMap } from 'rxjs/operators';
+import { Safe } from './../../../../core/model/safe';
+import { map, flatMap, withLatestFrom } from 'rxjs/operators';
 import { SafeService } from './../../../../core/services/safe.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SafePageComponent implements OnInit {
+  safe$: Observable<Safe>;
   safeItems$: Observable<SafeItem[]>;
 
   constructor(
@@ -24,13 +26,20 @@ export class SafePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.safeItems$ = this.activatedRoute.paramMap.pipe(
+    this.safe$ = this.activatedRoute.paramMap.pipe(
       map(params => params.get('id')),
-      flatMap((id: string) => this.safeService.getItems(id))
+      flatMap((id: string) => this.safeService.getSafe(id))
+    );
+
+    this.safeItems$ = this.safe$.pipe(
+      flatMap(safe => this.safeService.getItems(safe.id))
     );
   }
 
   addSafeItem(): void {
-    this.dialogService.open(AddSafeItemDialogComponent);
+    const dialogRef = this.dialogService.open(AddSafeItemDialogComponent);
+    dialogRef.afterClosed()
+      .pipe(withLatestFrom(this.safe$))
+    .subscribe(([result, safe]: [SafeItem, Safe]) => this.safeService.addItem(safe.id, result));
   }
 }

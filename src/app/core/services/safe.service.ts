@@ -12,7 +12,7 @@ export class SafeService {
 
   private safes = new BehaviorSubject<Safe[]>([]);
 
-  private safeItems = new Map<string, AsyncSubject<SafeItem[]>>();
+  private safeItems = new Map<string, BehaviorSubject<SafeItem[]>>();
 
   private readonly safeItems1: SafeItem[] = [
     { id: '1', safeId: '1', name: 'Fahrrad', price: 55.5 },
@@ -71,7 +71,7 @@ export class SafeService {
 
   getItems(safeId: string): Observable<SafeItem[]> {
     if (!this.safeItems.has(safeId)) {
-      this.safeItems.set(safeId, new AsyncSubject<SafeItem[]>());
+      this.safeItems.set(safeId, new BehaviorSubject<SafeItem[]>([]));
       setTimeout(() => {
         if (safeId === '1') {
           this.safeItems
@@ -82,12 +82,26 @@ export class SafeService {
             .get(safeId)
             .next(this.safeItems2);
         } else {
-          this.safeItems.get(safeId).next(null);
+          this.safeItems.get(safeId).next([]);
         }
-        this.safeItems.get(safeId).complete();
+        // must not complete, otherwise the UI does not get any more objects
+        // this.safeItems.get(safeId).complete();
       }, 2000);
     }
 
     return this.safeItems.get(safeId).asObservable();
+  }
+
+  addItem(safeId: string, item: SafeItem): void {
+    console.log('SafeService.addItem');
+
+    if (!this.safeItems.has(safeId)) {
+      const newSubject: BehaviorSubject<SafeItem[]> = new BehaviorSubject([]);
+      this.safeItems.set(safeId, newSubject);
+    }
+
+    const current$ = this.safeItems.get(safeId);
+    const currentItems = current$.getValue();
+    current$.next([...currentItems, item]);
   }
 }

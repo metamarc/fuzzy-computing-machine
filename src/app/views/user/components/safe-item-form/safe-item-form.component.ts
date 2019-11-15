@@ -1,5 +1,6 @@
+import { SafeService } from './../../../../core/services/safe.service';
 import { SafeItem } from './../../../../core/model/safe-item';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'cool-safe-item-form',
@@ -8,14 +9,17 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SafeItemFormComponent implements OnInit {
-  public model = {} as SafeItem;
+  @Output() result = new EventEmitter<SafeItem>();
 
-  constructor() { }
+  public item = {} as SafeItem;
+
+  constructor(private safeService: SafeService) { }
 
   ngOnInit() {
   }
 
   onSubmit(): void {
-
+    console.log('onSubmit: emitting safeItem');
+    this.result.emit(this.item);
   }
 }
