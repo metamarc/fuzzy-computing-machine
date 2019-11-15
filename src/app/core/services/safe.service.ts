@@ -101,7 +101,6 @@ export class SafeService {
     }
 
     const current$ = this.safeItems.get(safeId);
-    const currentItems = current$.getValue();
-    current$.next([...currentItems, item]);
+    current$.next([...current$.getValue(), item]);
   }
 }
